@@ -11,7 +11,7 @@ In this repository you will find a folder with the following codes in python:
 3) dialog.py for the dialog window
 
 
-You will find also a folder with the images embedded in the GUI and the dialog window.
+You will find also a folder with the images embedded in the GUI and the dialog window (the resource_rc.py code is mandatory to import correctly images).
 If you would like to have a standalone file in your windows computer you can compile the "programme.spec" file.
 
 
