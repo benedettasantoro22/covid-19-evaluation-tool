@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="img">
+    <file>Cattura1-ENG.PNG</file>
+    <file>Cattura3-ENG.PNG</file>
+    <file>Cattura4-ENG.PNG</file>
+    <file>tabella-contagiosità-ENG.PNG</file>
+    <file>Cattura-ENG.PNG</file>
+    <file>units_sigillo.png</file>
+    <file>corona-virus.jpg</file>
+    <file>images.png</file>
+  </qresource>
+</RCC>
