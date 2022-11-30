@@ -20,7 +20,7 @@ a) logbook to track all the evaluation performed and automatically updated
 b) a file with the evaluation
 c) a folder with the plots of the infection probability profiles
 
-If you have any questions or suggestions please contact me
+If you have any questions or suggestions please contact me.
 
 
 
