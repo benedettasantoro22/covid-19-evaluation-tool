@@ -25,18 +25,25 @@ You just need to import the repository in your local computer:
 
 ` git clone https://github.com/benedettasantoro22/covid-19-evaluation-tool.git `
 
-and run the code [^1] :
+go to the folder:
+
+`  cd covid-19-evaluation-tool.git `
+
+and run the code:
 
 ` python .\programme.py `
 
-If you have a Windows computer and want to obtain a standalone file, you can compile the "programme.spec":
+You'll probably need to install some additional libraries to run the code, like PyQT5; if so type:
+
+` pip install library_name `
+
+If you prefer a standalone file, you can compile the "programme.spec" [^1] file:
 
 `pyinstaller programme.spec  `                                   
 
-For the instructions see the [README.md](code/README.md) file.
+For all instructions on how touse the GUI see the [README.md](code/README.md) file.
 If you have any questions or suggestions please contact me by email.
 
- [^1]: You'll probably need to install some additional packages to run the code. 
-
+[^1]: You need to install pyinstaller for this operation.
 
 
