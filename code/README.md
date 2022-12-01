@@ -22,7 +22,7 @@ In the **RESULTS** tab you can plot the viral concentration profile by tapping t
 ## Output files
 
 The tool will give a series of output files:
-+ logbook to track all the evaluation performed and automatically updated
++ logbook file to track all the evaluation performed and automatically updated
 * a text file with the evaluation
 - a folder with the plots of the infection probability profiles
 
