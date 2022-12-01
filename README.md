@@ -1,5 +1,6 @@
 
 # Tool for the evaluation of infection probability from Covid-19 indoor
+
 <img
   src="/code/IMMAGINI-GUI/corona-virus.jpg"
   alt="Alt text"
@@ -42,7 +43,8 @@ If you prefer a standalone file, you can compile the "programme.spec" [^1] file:
 `pyinstaller programme.spec  `                                   
 
 For all instructions on how touse the GUI see the [README.md](code/README.md) file.
-If you have any questions or suggestions please contact me by email.
+
+If you have any questions or suggestions please contact me by email. 
 
 [^1]: You need to install pyinstaller for this operation.
 
