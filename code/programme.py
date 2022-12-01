@@ -19,8 +19,8 @@ from pyqtgraph import PlotWidget, plot
 
 from math import exp
 from datetime import datetime
-from applicazione_rischio_eng import Ui_MainWindow
-from widget_eng import Ui_Form
+from interface import Ui_MainWindow
+from dialog import Ui_Form
 
 
 
