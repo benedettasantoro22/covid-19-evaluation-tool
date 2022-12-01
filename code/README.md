@@ -1,4 +1,4 @@
-# Instructions for the user 
+# Instructions for users 
 ## General information
 
 You can navigate through tabs or with the menu on the top side of the window or with buttons. 
