@@ -404,7 +404,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.calculation() 
         
         self.PlotWidget.setLabel('bottom',"<span style=\"color:rgb(0, 0, 0);font-size:40px\">Time t [h]</span>")
-        self.PlotWidget.setLabel('left',"<span style=\"color:rgb(0,0, 0);font-size:40px\">Viral concentration [quanta/m<sup>3]</span>")
+        self.PlotWidget.setLabel('left',"<span style=\"color:rgb(0,0, 0);font-size:40px\">Viral concentration [quanta/m<sup>3</sup>]</span>")
         
         self.PlotWidget.plot(self.T,self.X,pen=pg.mkPen(color = (157, 172, 255), width=7))
     
