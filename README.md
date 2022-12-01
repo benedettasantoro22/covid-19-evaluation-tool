@@ -27,12 +27,6 @@ If you have a Windows computer and want to obtain a standalone file, you can com
 
 `pyinstaller programme.spec  `                                   
 
-## Output files
-
-The tool will give a series of output files:
-+ logbook to track all the evaluation performed and automatically updated
-* a text file with the evaluation
-- a folder with the plots of the infection probability profiles
 
 If you have any questions or suggestions please contact me by email.
 
