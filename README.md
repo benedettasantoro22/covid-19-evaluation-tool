@@ -27,7 +27,7 @@ If you have a Windows computer and want to obtain a standalone file, you can com
 
 `pyinstaller programme.spec  `                                   
 
-For the instructions see the [README.md](code/REASME.md) file.
+For the instructions see the [README.md](code/README.md) file.
 If you have any questions or suggestions please contact me by email.
 
  [^1]: You'll probably need to install some additional packages to run the code. 
