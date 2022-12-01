@@ -30,7 +30,7 @@ If you have a Windows computer and want to obtain a standalone file, you can com
 
 If you have any questions or suggestions please contact me by email.
 
- [^1]: You'll probably need to install some additional packages to run the code 
+ [^1]: You'll probably need to install some additional packages to run the code. 
 
 
 
