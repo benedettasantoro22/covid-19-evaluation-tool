@@ -6,18 +6,27 @@ In each tab you fill find my institutional email address, but you can also conta
 
 ## User's information
 In the tab named **USER** you can input your records and other information about the setting of the infection event.
-It is not mandatory to fill this part
+
+It is not mandatory to fill this part.
 
 ## Room parameters
 In the **ROOM** tab you need to provide for room surface and height, ventilation, relative umidity (%) by choosing from a drop-out menu and the permanence time of the occupants (h).
+
 You can also check the box on the bottom if the room is equipped with HEPA filters
 ## Occupants
-In the **OCCUPANTS** tab you have to insert the # of infectors and susceptible people [^1]. If occupants wear masks, check the box and choose the mask type from the drop-out menu. You can also select the category of susceptible individuals
-You have to select the activity and the contagiousness level of the infector; if you need help, tap the button with the question mark to open the pop-up window with a table with a list of the possible activity and contagiousness levels with the corresponding level of risk.
+In the **OCCUPANTS** tab you have to insert the nr. of infectors and susceptible people [^1]. 
+
+If occupants wear masks, check the box and choose the mask type from the drop-out menu. 
+
+You can also select the category of susceptible individuals.
+
+You have to select the activity and the contagiousness level of the infector; if you need help, tap the button with the question mark to open the pop-up window with a table with a list of the possible activities and contagiousness levels with the corresponding level of risk.
+
 ## Results
 In the **RESULTS** tab you can plot the viral concentration profile by tapping the **PLOT** button[^2]; the canvas can be cleared through the **CLEAR** button. To save the evaluation click on the **SAVE** button. 
 
-
+## Instruction
+You'll find a tab with a question mark with a recap of the instructions.
 
 ## Output files
 
