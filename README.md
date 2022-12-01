@@ -1,16 +1,22 @@
-# Covid-19 evaluation tool
+
+# Tool for the evaluation of infection probability from Covid-19 indoor
+<img
+  src="/code/IMMAGINI-GUI/corona-virus.jpg"
+  alt="Alt text"
+  title=""
+  style="float right;width:200px;height:200px">
+
+
 The goal of this project was to create a software tool
 for the evaluation of the infection probability for Covid-19 in closed settings.
 This tool is meant to be used by people who are not familiar with mathematical modelling then the aim
 was to create a user-friendly software.
 
 The code is totally written in Python and for the graphical part I used the PyQT5 library.
-
 In this repository you will find the [code](code) folder with the following files:
 1. [interface.py](code/interface.py) the code for the implementation of the graphical user interface;
 2. [programme.py](code/programme.py) the code to make the GUI work correctly for the evaluation;
 3. [dialog.py](code/dialog.py) for the dialog window embedded in the main window.
-
 
 You will find also a [folder](code/IMMAGINI-GUI) with the images used in the GUI and the dialog window (the resource_rc.py code is mandatory to import correctly images).
 
