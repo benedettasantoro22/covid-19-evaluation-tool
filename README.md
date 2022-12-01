@@ -1,5 +1,6 @@
 
 # Tool for the evaluation of infection probability from Covid-19 indoor
+![image](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
 
 <img
   src="/code/IMMAGINI-GUI/corona-virus.jpg"
