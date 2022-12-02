@@ -43,7 +43,7 @@ If you prefer a standalone file, you can compile the "programme.spec" [^1] file:
 
 `pyinstaller programme.spec  `                                   
 
-For all instructions on how touse the GUI see the [README.md](code/README.md) file.
+For all instructions on how touse the GUI see the [INSTRUCTIONS.md](code/INSTRUCTIONS.md) file.
 
 If you have any questions or suggestions please contact me by email. 
 
