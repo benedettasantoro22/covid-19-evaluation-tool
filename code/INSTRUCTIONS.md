@@ -2,7 +2,7 @@
 ## General information
 
 You can navigate through tabs or with the menu on the top side of the window or with buttons. 
-In each tab you fill find my institutional email address, but you can also contact me on my personal email visible on my GitHub profile.  
+In each tab you will find my institutional email address, but you can also contact me on my personal email visible on the GitHub profile.  
 
 
 ![tab-home](https://user-images.githubusercontent.com/118896358/205090452-814ae206-3fad-4fd6-b673-ffb715e1b92c.PNG)
@@ -55,7 +55,7 @@ You can also select the category of susceptible individuals.
 
 
 
-You have to select the activity and the contagiousness level of the infector; if you need help, tap the button with the question mark to open the dialog window with a table with a list of the possible activities and contagiousness levels with the corresponding level of risk.
+You have to select the activity and the contagiousness level of the infector(s); if you need help for this choice, tap the button with the question mark to open the dialog window with a table listing all the possible activities and contagiousness levels with the corresponding level of risk.
 
 
 ![tab-activity-S](https://user-images.githubusercontent.com/118896358/205091218-08e314f1-c727-4a75-ac40-ce32f0c563fb.png)
@@ -90,9 +90,9 @@ You'll find a tab with a question mark with a recap of the instructions.
 ## Output files
 
 The tool will give a series of output files:
-+ logbook file to track all the evaluation performed and automatically updated
-* a text file with the evaluation
-- a folder with the plots of the infection probability profiles
++ logbook file to track all the evaluation performed and automatically updated;
+* a text file with the evaluation (if saved);
+- a "RESULTS" folder with the plots of the infection probability profiles.
 
 
 
