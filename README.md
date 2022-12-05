@@ -2,7 +2,7 @@
 # Tool for the evaluation of infection probability from Covid-19 indoor
 ![image](http://ForTheBadge.com/images/badges/made-with-python.svg)
 ![Python](https://img.shields.io/badge/python-3.9.12-blue.svg)
-
+![PyPI](https://img.shields.io/pypi/pyversions/PyInstaller?style=for-the-badge")
 
 <img
   src="/code/IMMAGINI-GUI/corona-virus.jpg"
