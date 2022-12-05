@@ -9,7 +9,7 @@ In each tab you will find my institutional email address, but you can also conta
 
 
 ## User's information
-In the tab named **USER** you can input your records and other information about the setting of the infection event.
+In the tab named **USER**, you can input your records and other information about the setting of the infection event.
 
 It is not mandatory to fill this part.
 
@@ -21,7 +21,7 @@ It is not mandatory to fill this part.
 
 
 ## Room parameters
-In the **ROOM** tab you need to provide for room surface and height, ventilation, relative umidity (%) by choosing from a drop-out menu and the permanence time of the occupants (h).
+In the **ROOM** tab, you need to provide for room surface and height, ventilation, relative humidity (%) by choosing from a drop-out menu and the permanence time of the occupants (h).
 You can also check the box on the bottom if the room is equipped with HEPA filters.
 
 
@@ -38,7 +38,7 @@ You can also check the box on the bottom if the room is equipped with HEPA filte
 
 
 ## Occupants
-In the **OCCUPANTS** tab you have to insert the nr. of infectors and susceptible people [^1]. 
+In the **OCCUPANTS** tab, you have to insert the nr. of infectors and susceptible people [^1]. 
 
 If occupants wear masks, check the box and choose the mask type from the drop-out menu. 
 
@@ -69,7 +69,7 @@ You have to select the activity and the contagiousness level of the infector(s);
 
 
 ## Results
-In the **RESULTS** tab you can plot the viral concentration profile by tapping the **PLOT** button[^2]; the canvas can be cleared through the **CLEAR** button. To save the evaluation click on the **SAVE** button. 
+In the **RESULTS** tab, you can plot the viral concentration profile by tapping the **PLOT** button[^2]; the canvas can be cleared through the **CLEAR** button. To save the evaluation, click on the **SAVE** button. 
 
 
 
@@ -98,7 +98,7 @@ The tool will give a series of output files:
 
 
 
-[^1]: If you omitt the number of susceptible individuals, the tool calculates the maximum number of people allowed to keep the infection probability less or equal to 10%.
+[^1]: If you omit the number of susceptible individuals, the tool calculates the maximum number of people allowed to keep the infection probability less or equal to 10%.
 [^2]: You can also export the image if needed.
 
 
