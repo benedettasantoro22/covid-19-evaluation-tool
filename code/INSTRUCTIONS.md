@@ -24,15 +24,7 @@ It is not mandatory to fill this part.
 In the **ROOM** tab, you need to provide for room surface and height, ventilation, relative humidity (%) by choosing from a drop-out menu and the permanence time of the occupants (h).
 You can also check the box on the bottom if the room is equipped with HEPA filters.
 
-
-
-
-
-
-
-![tab-room](https://user-images.githubusercontent.com/118896358/205090827-9eff3955-9f38-4349-8543-cea041745fad.PNG)
-
-
+![tab-room](https://user-images.githubusercontent.com/118896358/205610357-ba140be7-a02b-4435-b02d-439e44aeb650.PNG)
 
 
 
