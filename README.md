@@ -37,7 +37,7 @@ and run the code:
 
 You'll probably need to install some additional libraries to run the code, like PyQT5; if so, type:
 
-` pip install library_name `
+` conda install library_name `
 
 If you prefer a standalone file, you can compile the "programme.spec" [^1] file:
 
