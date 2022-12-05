@@ -11,10 +11,10 @@
 
 The goal of this project was to create a software tool
 for the evaluation of the infection probability for Covid-19 in closed settings.
-This tool is meant to be used by people who are not familiar with mathematical modelling then the aim
+This tool is meant to be used by people who are not familiar with mathematical modelling, then the aim
 was to create a user-friendly software.
 
-The code is totally written in Python and for the graphical part I used the PyQT5 library.
+The code is totally written in Python, and for the graphical part I used the PyQT5 library.
 In this repository you will find the [code](code) folder with the following files:
 1. [interface.py](code/interface.py) the code for the implementation of the graphical user interface;
 2. [programme.py](code/programme.py) the code to make the GUI work correctly for the evaluation;
@@ -35,7 +35,7 @@ and run the code:
 
 ` python .\programme.py `
 
-You'll probably need to install some additional libraries to run the code, like PyQT5; if so type:
+You'll probably need to install some additional libraries to run the code, like PyQT5; if so, type:
 
 ` pip install library_name `
 
@@ -45,7 +45,7 @@ If you prefer a standalone file, you can compile the "programme.spec" [^1] file:
 
 For the instructions on how to use the GUI see the [INSTRUCTIONS.md](code/INSTRUCTIONS.md) file.
 
-If you have any questions or suggestions please contact me by email. 
+If you have any questions or suggestions, please contact me by email. 
 
 [^1]: You need to install pyinstaller for this operation.
 
