@@ -2,7 +2,7 @@
 # Tool for the evaluation of infection probability from Covid-19 indoor
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 ![Python](https://img.shields.io/badge/python-3.9.12-blue.svg)
-![Zenodo](https://zenodo.org/badge/572460618.svg)
+[![DOI](https://zenodo.org/badge/572460618.svg)](https://zenodo.org/badge/latestdoi/572460618)
 
 ![GitHub Contributors Image](https://contrib.rocks/image?repo=benedettasantoro22/covid-19-evaluation-tool)
 
