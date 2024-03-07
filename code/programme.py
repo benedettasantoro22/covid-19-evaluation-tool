@@ -19,8 +19,8 @@ from pyqtgraph import PlotWidget, plot
 
 from math import exp
 from datetime import datetime
-from interface import Ui_MainWindow
-from dialog import Ui_Form
+from applicazione_rischio_eng import Ui_MainWindow
+from widget_eng import Ui_Form
 
 
 
@@ -411,36 +411,38 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 #funcion for risk evaluation    
     def riskEvaluation(self):
        
-        self.getProtection()
-        self.loadData()
-        self.getUmidity()
-
-        
-        
+        self.calculation()    
         self.ceq   = (1-self.alpha)*self.r*self.n_i/((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)    #equilibrium viral concentration
         
-        T = np.zeros(int(self.time*1./0.01 + 1))
-        Prob = np.zeros(int(self.time*1./0.01 + 1))
+        T = np.zeros(self.n_step+1)
+        Prob = np.zeros(self.n_step+1)
         
         
         if (self.n_h != 0):
            
-            #nr. of people allowed to keep the probability of at least one infection < 10%
-            self.nh_max = -np.log(0.9)*((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)/((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.time)                                                                  
+                                                                          
             
             #probability of no infections 
-            self.P0    = (exp(-((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.n_h*self.time)/((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)))*100  
-        
+            self.P0    = (exp(-((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.time)/((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)))*100  
+            
         
         
 
-            self.P     = (100 - self.P0)                                                 #infection probability for at least one individual     
+            self.P     = (100 - self.P0)                                                 #infection probability for at least one individual
+            self.nh_max = self.n_i*100/self.P                                            #maximum number of susceptible individuals allowed 
             self.g     = (self.n_h) * self.P*1./100                                      #number of new infectious individuals        
           
-            for i in range(int(self.time*1./0.01 + 1)): 
+            for i in range(self.n_step+1): 
             
-                T[i] = i*0.01
-                Prob[i] = 100 - (exp(-((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.n_h*T[i])/((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)))*100
+                T[i] = i*self.h
+                x = self.X[0:i]
+                if (len(x)<= 1):
+                    Prob[i] = 0
+                
+                else:
+                    Prob[i] = 100 - (exp(-(1-self.beta)*self.b*np.trapz(x,T[:len(x)])))*100
+             
+                
    
             p1 = plt.figure()
             plt.plot(T,Prob,"b--")
@@ -452,22 +454,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         if (self.n_h == 0):
             
-            #nr. of people allowed to keep the probability of at least one infection < 10%
-            self.nh_max = -np.log(0.9)*((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)/((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.time)                                                           
+            
      
             #probability of no infections 
-            self.P0    = (exp(-((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.nh_max*self.time)/((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)))*100 
+            self.P0    = (exp(-((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.time)/((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)))*100 
         
         
             self.P     = (100 - self.P0)                                                  #infection probability for at least one individual   
-            self.g     = (self.nh_max) * self.P*1./100                                    #number of new infectious individuals       
+            self.nh_max = self.n_i*100/self.P                                             #maximum number of susceptible individuals allowed 
+              
 
-            for i in range(int(self.time*1./0.01 + 1)): 
-                
-                
-                T[i] = i*0.01
-                Prob[i] = 100 - (exp(-((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.nh_max*T[i])/((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)))*100
+            for i in range(self.n_step+1): 
             
+                T[i] = i*self.h
+                x = self.X[0:i]
+                if (len(x)<= 1):
+                    Prob[i] = 0
+                
+                else:
+                    Prob[i] = 100 - (exp(-(1-self.beta)*self.b*np.trapz(x,T[:len(x)])))*100
+             
             p1 = plt.figure()
             plt.plot(T,Prob,"b--")
             plt.title("Infection probability")
@@ -565,13 +571,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 outfile.write(f'The probability of no infection: {self.P0:.1f}% ' +'\n')
                 outfile.write(f'The probability that at least one individual is infected: {self.P:.1f}%' +'\n')
                 
-                if (self.g > self.n_i) and (self.P != 100) and (self.n_h !=0):
+                if (self.g >= self.n_i) and (self.P != 100) and (self.n_h !=0):
                     
                     #minimum ventilation
-                    lmin = -self.l_rh  - self.l_hepa - self.l_UV + (1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*(self.n_h)*self.time/(self.V*np.log((self.n_h)/(self.n_h-self.n_i)))
+                    lmin = -self.l_rh  - self.l_hepa - self.l_UV + (1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.time/(self.V*np.log((self.n_h)/(self.n_h-self.n_i)))
                     
                     #maximum resident time
-                    tmax = np.log((self.n_h)/(self.n_h-self.n_i))*((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)/((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*(self.n_h))
+                    tmax = np.log((self.n_h)/(self.n_h-self.n_i))*((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)/((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i)
                     
                     if (tmax > 0.0003):
                         outfile.write(f'Keeping the same air ventilation, the maximum resident time allowed is: {tmax:.1f} h' +'\n') 
@@ -581,10 +587,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 elif (self.g > self.n_i) and (self.P != 100) and (self.n_h == 0):
                     
                     #minimum ventilation
-                    lmin = -self.l_rh  - self.l_hepa - self.l_UV + (1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*(self.nh_max)*self.time/(self.V*np.log((self.nh_max)/(self.nh_max-self.n_i)))
+                    lmin = -self.l_rh  - self.l_hepa - self.l_UV + (1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.time/(self.V*np.log((self.nh_max)/(self.nh_max-self.n_i)))
                     
                     #maximum resident time
-                    tmax = np.log((self.nh_max)/(self.nh_max-self.n_i))*((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)/((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*(self.nh_max))
+                    tmax = np.log((self.nh_max)/(self.nh_max-self.n_i))*((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)/((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i)
                     
                     if (tmax > 0.0003):
                         outfile.write(f'Keeping the same air ventilation, the maximum resident time allowed is: {tmax:.1f} h' +'\n') 
