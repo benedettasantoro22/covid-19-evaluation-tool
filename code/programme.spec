@@ -3,8 +3,9 @@
 
 block_cipher = None
 
+
 a = Analysis(
-    ['programme.py'],
+    ['risk.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -12,15 +13,15 @@ a = Analysis(
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=['pandas',
+    excludes=[
+    'pandas',
     'scipy',
     'sympy',
     'tk',
     'ipython',
     'jedy',
     'tornado',
-    'tkinter'
-],
+    'tkinter'],
     win_no_prefer_redirects=False,
     win_private_assemblies=False,
     cipher=block_cipher,
@@ -35,7 +36,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name='Infection probability for Covid-19',
+    name='risk',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -48,5 +49,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='corona-virus.ico',
+    icon=['corona-virus.ico'],
 )
