@@ -642,7 +642,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         outfile1 = open("logbook.txt", 'a')
         now1 = datetime.now()
         dt_string1 = now1.strftime("%d/%m/%Y %H:%M:%S")
-        outfile1.write("The GUI version is that of 21/10/2022, quanta emission rates are collected in: https://doi.org/10.1177/1420326X211039544" + "\n")
+        outfile1.write("The GUI version is that of 15/03/2024, quanta emission rates are collected in: https://doi.org/10.1177/1420326X211039544" + "\n")
         outfile1.write(dt_string1 + "--" + self.usersurname + ": "+ self.pres + " -- " + self.room + " " + name[0] + "\n")
         outfile1.write("============================================================================================================================================" + "\n")
         
