@@ -34,8 +34,8 @@ R =  [[4.0,15.8,28.0],[16.0,50.2,85.7],[97.0,382.5,679.0],[4.4,17.4,30.8],[21.0,
 
 
 #function to compute viral concentration as a function of time 
-def concentration(c0,alpha,l_vent,l_rh,l_hepa,l_UV,V,r,n_i,t):  
-        return c0*exp(-(l_vent+l_rh+l_hepa+l_UV)*t)+ (1-alpha)*r*n_i*(1-exp(-(l_vent+l_rh+l_hepa+l_UV)*t))/(V*(l_vent+l_rh+l_hepa+l_UV))
+def concentration(c0,alpha,l_vent,l_rh,l_hepa,l_UV,l_dep,V,r,n_i,t):  
+        return c0*exp(-(l_vent+l_rh+l_hepa+l_UV+l_dep)*t)+ (1-alpha)*r*n_i*(1-exp(-(l_vent+l_rh+l_hepa+l_UV+l_dep)*t))/(V*(l_vent+l_rh+l_hepa+l_UV+l_dep))
     
 class Dialog(QtWidgets.QDialog, Ui_Form):
     def __init__(self, *args, obj=None, **kwargs):
@@ -68,6 +68,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_15.clicked.connect(self.switch5)  #to back the tab: HOME
         self.b = 0.4824
         self.l_UV = 7.26
+        self.l_dep = 0.24
         self.pushButton_5.clicked.connect(self.plot)      #per plottare il grafico della concentrazione
         self.pushButton_2.clicked.connect(self.reset)     #per pulire il grafico della concentrazione
         self.pushButton_4.clicked.connect(self.infobox)   #per la tabellina con i quanta di emissione
@@ -393,7 +394,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             
            
             self.T[i] = i*self.h
-            self.X[i] = concentration(0,self.alpha,self.l_vent,self.l_rh,self.l_hepa,self.l_UV,self.V,self.r,self.n_i,self.T[i])
+            self.X[i] = concentration(0,self.alpha,self.l_vent,self.l_rh,self.l_hepa,self.l_UV,self.dep,self.V,self.r,self.n_i,self.T[i])
        
         self.c = self.X[self.n_step]
         return self.T,self.X,self.c
@@ -412,7 +413,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def riskEvaluation(self):
        
         self.calculation()    
-        self.ceq   = (1-self.alpha)*self.r*self.n_i/((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)    #equilibrium viral concentration
+        self.ceq   = (1-self.alpha)*self.r*self.n_i/((self.l_rh+self.l_vent+self.l_hepa+self.dep+self.l_UV)*self.V)    #equilibrium viral concentration
         
         T = np.zeros(self.n_step+1)
         Prob = np.zeros(self.n_step+1)
@@ -423,7 +424,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                                                           
             
             #probability of no infections 
-            self.P0    = (exp(-((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.time)/((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)))*100  
+            self.P0    = (exp(-((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.time)/((self.l_rh+self.l_vent+self.l_hepa+self.l_UV+self.dep)*self.V)))*100  
             
         
         
@@ -457,7 +458,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             
      
             #probability of no infections 
-            self.P0    = (exp(-((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.time)/((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)))*100 
+            self.P0    = (exp(-((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.time)/((self.l_rh+self.l_vent+self.dep+self.l_hepa+self.l_UV)*self.V)))*100 
         
         
             self.P     = (100 - self.P0)                                                  #infection probability for at least one individual   
@@ -574,10 +575,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 if (self.g >= self.n_i) and (self.P != 100) and (self.n_h !=0):
                     
                     #minimum ventilation
-                    lmin = -self.l_rh  - self.l_hepa - self.l_UV + (1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.time/(self.V*np.log((self.n_h)/(self.n_h-self.n_i)))
+                    lmin = -self.dep -self.l_rh  - self.l_hepa - self.l_UV + (1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.time/(self.V*np.log((self.n_h)/(self.n_h-self.n_i)))
                     
                     #maximum resident time
-                    tmax = np.log((self.n_h)/(self.n_h-self.n_i))*((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)/((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i)
+                    tmax = np.log((self.n_h)/(self.n_h-self.n_i))*((self.l_rh+self.l_vent+self.dep+self.l_hepa+self.l_UV)*self.V)/((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i)
                     
                     if (tmax > 0.0003):
                         outfile.write(f'Keeping the same air ventilation, the maximum resident time allowed is: {tmax:.1f} h' +'\n') 
@@ -587,10 +588,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 elif (self.g > self.n_i) and (self.P != 100) and (self.n_h == 0):
                     
                     #minimum ventilation
-                    lmin = -self.l_rh  - self.l_hepa - self.l_UV + (1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.time/(self.V*np.log((self.nh_max)/(self.nh_max-self.n_i)))
+                    lmin = -self.dep -self.l_rh  - self.l_hepa - self.l_UV + (1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i*self.time/(self.V*np.log((self.nh_max)/(self.nh_max-self.n_i)))
                     
                     #maximum resident time
-                    tmax = np.log((self.nh_max)/(self.nh_max-self.n_i))*((self.l_rh+self.l_vent+self.l_hepa+self.l_UV)*self.V)/((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i)
+                    tmax = np.log((self.nh_max)/(self.nh_max-self.n_i))*((self.l_rh+self.l_vent+self.dep+self.l_hepa+self.l_UV)*self.V)/((1-self.alpha)*(1-self.beta)*self.r*self.b*self.n_i)
                     
                     if (tmax > 0.0003):
                         outfile.write(f'Keeping the same air ventilation, the maximum resident time allowed is: {tmax:.1f} h' +'\n') 
@@ -609,7 +610,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     outfile.write(f'The maximum viral concentration has not been reached' + '\n')    
                     
                 #time to let the concentration decay till 1% of that reached during the room occupation 
-                tmin = -np.log(0.01)/((self.l_rh+self.l_vent+self.l_hepa+self.l_UV))  
+                tmin = -np.log(0.01)/((self.l_rh+self.l_vent+self.l_hepa+self.l_UV+self.dep))  
                 outfile.write(f'The time after which the room might be occupied again: {tmin:.1f} h' +"\n")
                 
                 if (self.nh_max < self.n_h) and (self.n_h != 0):    
