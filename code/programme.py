@@ -463,7 +463,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
             self.P     = (100 - self.P0)                                                  #infection probability for at least one individual   
             self.nh_max = self.n_i*100/self.P                                             #maximum number of susceptible individuals allowed 
-              
+            self.g     = (self.n_h) * self.P*1./100   
 
             for i in range(self.n_step+1): 
             
